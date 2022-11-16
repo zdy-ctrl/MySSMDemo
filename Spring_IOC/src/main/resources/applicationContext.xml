@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <bean id="HelloWorld" class="com.atzdy.spring.pojo.HelloWorld"></bean>
+    <!--
+        依赖注入方法一：setter注入
+    -->
+    <bean id="Student" class="com.atzdy.spring.pojo.Student">
+        <property name="id" value="1001"/>
+        <property name="name" value="张三"/>
+        <property name="age" value="23"/>
+        <property name="sex" value="男"/>
+    </bean>
+    <!--依赖注入方法二：构造器注入-->
+    <!--<bean id="StudentTwo" class="com.atzdy.spring.pojo.Student">
+        <constructor-arg value="1002"></constructor-arg>
+        <constructor-arg value="李四"></constructor-arg>
+        <constructor-arg value="33"></constructor-arg>
+        <constructor-arg value="男"></constructor-arg>
+    </bean>-->
+    <!--依赖注入之特殊处理-->
+    <bean id="StudentThree" class="com.atzdy.spring.pojo.Student">
+        <property name="id" value="1001"/>
+        <property name="name">
+            <null/>
+        </property>
+        <property name="age" value="23"/>
+        <property name="sex" value="男"/>
+    </bean>
+    <!--为类类型属性赋值方式一-->
+    <bean id="ClazzOne" class="com.atzdy.spring.pojo.Clazz">
+        <property name="clazzId" value="1111"/>
+        <property name="clazzName" value="大佬班"/>
+    </bean>
+    <bean id="StudentFour" class="com.atzdy.spring.pojo.Student">
+        <property name="id" value="1001"/>
+        <property name="name" value="张三"/>
+        <property name="age" value="23"/>
+        <property name="sex" value="男"/>
+        <property name="clazz" ref="ClazzOne"/>
+    </bean>
+    <!--为类类型属性赋值方式二-->
+    <bean id="StudentSix" class="com.atzdy.spring.pojo.Student">
+        <property name="id" value="1001"/>
+        <property name="name" value="张三"/>
+        <property name="age" value="23"/>
+        <property name="sex" value="男"/>
+        <property name="clazz">
+            <bean id="clazzInner" class="com.atzdy.spring.pojo.Clazz">
+                <property name="clazzId" value="222"/>
+                <property name="clazzName" value="菜鸟班"/>
+            </bean>
+        </property>
+    </bean>
+    <!--为类类型属性赋值方式三：级联属性赋值-->
+    <bean id="StudentSeven" class="com.atzdy.spring.pojo.Student">
+        <property name="id" value="1001"/>
+        <property name="name" value="张三"/>
+        <property name="age" value="23"/>
+        <property name="sex" value="男"/>
+        <property name="clazz" ref="ClazzOne"/>
+        <property name="clazz.clazzId" value="333"/>
+        <property name="clazz.clazzName" value="努力成为大佬班"/>
+    </bean>
+
+    <!--为数组类型属性赋值-->
+    <bean id="StudentEight" class="com.atzdy.spring.pojo.Student">
+        <property name="id" value="1001"/>
+        <property name="name" value="张三"/>
+        <property name="age" value="23"/>
+        <property name="sex" value="男"/>
+        <property name="clazz" ref="ClazzOne"/>
+        <property name="hobbies">
+            <array>
+                <value>篮球</value>
+                <value>网球</value>
+                <value>羽毛球</value>
+            </array>
+        </property>
+    </bean>
+    <!--为liat集合属性赋值-->
+    <bean id="ClazzTwo" class="com.atzdy.spring.pojo.Clazz">
+        <property name="clazzId" value="1111"/>
+        <property name="clazzName" value="大佬班"/>
+        <property name="students" ref="StudentList"/>
+    </bean>
+    <util:list id="StudentList">
+        <ref bean="Student"/>
+        <ref bean="StudentEight"/>
+    </util:list>
+    <!--Map集合赋值-->
+    <bean id="teacherOne" class="com.atzdy.spring.pojo.Teacher">
+        <property name="teacherId" value="10010"/>
+        <property name="teacherName" value="张老师"/>
+    </bean>
+    <bean id="teacherTwo" class="com.atzdy.spring.pojo.Teacher">
+        <property name="teacherId" value="10086"/>
+        <property name="teacherName" value="李老师"/>
+    </bean>
+    <bean id="StudentTen" class="com.atzdy.spring.pojo.Student">
+        <property name="id" value="1001"/>
+        <property name="name" value="张三"/>
+        <property name="age" value="23"/>
+        <property name="sex" value="男"/>
+        <property name="clazz" ref="ClazzOne"/>
+        <property name="hobbies">
+            <array>
+                <value>篮球</value>
+                <value>网球</value>
+                <value>羽毛球</value>
+            </array>
+        </property>
+        <property name="teacherMap" ref="StudentMap">
+            <!--<map>
+                <entry>
+                    <key>
+                        <value>10010</value>
+                    </key>
+                    <ref bean="teacherOne"/>
+                </entry>
+                <entry>
+                    <key>
+                        <value>10086</value>
+                    </key>
+                    <ref bean="teacherTwo"/>
+                </entry>
+            </map>-->
+        </property>
+    </bean>
+    <util:map id="StudentMap">
+        <entry>
+            <key>
+                <value>10010</value>
+            </key>
+            <ref bean="teacherOne"/>
+        </entry>
+        <entry>
+            <key>
+                <value>10086</value>
+            </key>
+            <ref bean="teacherTwo"/>
+        </entry>
+    </util:map>
+
+    <bean id="Student01" class="com.atzdy.spring.pojo.Student01" init-method="initMethod" destroy-method="destroyMethod">
+        <property name="id" value="001"/>
+        <property name="userName" value="张三"/>
+        <property name="password" value="10000"/>
+        <property name="age" value="26"/>
+    </bean>
+    <bean id="MyBeanProcessor" class="com.atzdy.spring.process.MyBeanProcessor"/>
+</beans>

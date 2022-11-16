@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入properties文件此后就可以在当前文件中使用${key}的方式引用value-->
+    <properties resource="jdbc.properties"/>
+    <!--设置别名-->
+    <typeAliases>
+<!--        <typeAlias type="com.atzdy.mybatis.pojo.User" alias="abc"/>   alias给User类设置一个别名-->
+<!--        <typeAlias type="com.atzdy.mybatis.pojo.User"/>若是不设置alias属性则使用当前类型的默认别名，即类名且不区分大小写-->
+<!--        通过包来设置类型别名 指定包下的所有类型将全部拥有默认的类型别名-->
+        <package name="com.atzdy.mybatis.pojo"/>
+    </typeAliases>
+    <!--连接数据库的环境-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <!--
+            dataSource:设置数据源
+            属性：
+                type:设置数据源的类型
+                type:"POOLED|UNPOOLED|JNDI"
+                POOLED:表示使用数据库连接池
+                UNPOOLED:表示不使用数据库连接池
+                JNDI:表示使用上下文数据源
+            -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+<!--引入mybatis的映射文件-->
+    <mappers>
+<!--    <mapper resource="mappers/UserMapper.xml"/>-->
+        <!--以包的方式引入映射文件，但是必须满足两个条件-->
+        <!--1.mapper接口和映射文件所在的包必须一致-->
+        <!--2.mapper接口名字和映射文件的名字必须一致-->
+        <package name="com.atzdy.mybatis.mapper"/>
+    </mappers>
+</configuration>

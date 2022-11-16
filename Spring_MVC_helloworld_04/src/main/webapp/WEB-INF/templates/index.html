@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>使用ServletAPI向request域对象共享数据</h1>
+
+<hr/>
+<h2>通过ServletAPI获取请求参数</h2>
+<form th:action="@{/testGetParam}" method="post">
+    用户：<input type="text" name="username">
+    密码：<input type="text" name="password">
+    <input type="submit" value="提交">
+</form>
+<hr/>
+<h2>通过控制器方法形参获取请求参数</h2>
+<form th:action="@{/testGetParamByFP}" method="post">
+    用户：<input type="text" name="username">
+    密码：<input type="text" name="password">
+    <input type="submit" value="提交">
+</form>
+<hr/>
+<h2>通过@RequestParam注解获取请求参数</h2>
+<form th:action="@{/testParamByRequestParam}" method="post">
+    用户：<input type="text" name="username">
+    密码：<input type="text" name="password">
+    <input type="submit" value="提交">
+</form>
+<hr/>
+<h2>通过POJO获取请求参数</h2>
+<form th:action="@{/testParamByPojo}" method="post">
+    用户：<input type="text" name="username">
+    密码：<input type="text" name="password">
+    <input type="submit" value="提交">
+</form>
+<h2><a th:href="@{test/ServletAPI02}">测试通过ServletAPI向请求域中共享数据</a></h2>
+<hr/>
+<h2><a th:href="@{test/ByMAV}">测试通过testByMAV向请求域中共享数据</a></h2>
+<hr/>
+<h2><a th:href="@{test/ByModel}">测试通过testByModel向请求域中共享数据</a></h2>
+<hr/>
+<h2><a th:href="@{test/ByMap}">测试通过testByMap向请求域中共享数据</a></h2>
+<hr/>
+<h2><a th:href="@{test/ByModelMap}">测试通过testByModelMap向请求域中共享数据</a></h2>
+<hr/>
+<h2><a th:href="@{test/BySession}">测试通过testBySession向Session请求域中共享数据</a></h2>
+<hr/>
+<h2><a th:href="@{test/ByApplication}">测试通过testByApplication向Application请求域中共享数据</a></h2>
+</body>
+</html>

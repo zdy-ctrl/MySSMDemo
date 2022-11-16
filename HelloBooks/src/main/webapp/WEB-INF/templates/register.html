@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" th:href="@{/static/css/login.css}">
+</head>
+
+<body>
+<div class="loginBox">
+    <h2>注册</h2>
+    <form th:action="@{/register}" method="post">
+        <div class="item">
+            <input type="text"name="username">
+            <label>用户名</label>
+        </div>
+        <div class="item">
+            <input type="password" name="password">
+            <label>密码</label>
+        </div>
+        <div class="btngroup">
+            <button class="btn" type="submit"} >注册
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

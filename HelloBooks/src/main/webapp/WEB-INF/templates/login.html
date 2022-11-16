@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" th:href="@{/static/css/login.css}">
+</head>
+
+<body>
+<div class="loginBox">
+    <h2>不登陆还想看什么</h2>
+    <form th:action="@{/login}" method="post">
+        <div class="item">
+            <input type="text"name="username">
+            <label>用户名</label>
+        </div>
+        <div class="item">
+            <input type="password" name="password">
+            <label>密码</label>
+        </div>
+        <div class="btngroup">
+            <button class="btn" type="submit" } >登录
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a th:href="@{/register01}">
+                <button class="btn" type="button">注册
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </a>
+        </div>
+    </form>
+
+    <script th:inline="javascript">
+        // let noPassword =[[${nopassword}]]
+        // window.addEventListener("DOMContentLoaded", () => {
+        //     if(noPassword) {
+        //         window.alert("请输入密码");
+        //     }
+        // })
+
+    </script>
+</div>
+</body>
+</html>

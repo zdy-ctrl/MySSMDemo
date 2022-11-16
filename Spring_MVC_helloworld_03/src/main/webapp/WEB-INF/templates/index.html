@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>SpringMVC获取请求参数</h1>
+<hr/>
+<h2>这是方法一：servletAPI方式获取参数</h2>
+<form th:action="@{/testParam}" method="post">
+    用户名：<input type="text" name="username">
+    密码：<input type="text" name="password">
+    <input type="submit" name="确认">
+</form>
+<hr/>
+<h2>这是方法二：控制器形参方式获取参数</h2>
+<form th:action="@{/testParamByFP}" method="post">
+    用户名：<input type="text" name="username">
+    密码：<input type="text" name="password">
+    <input type="submit" name="确认">
+</form>
+<hr/>
+<h2>这是方法三：获取pojo类型的参数</h2>
+<form th:action="@{/testParamByPojo}" method="post">
+    id:<input type="text" name="id">
+    用户名：<input type="text" name="username">
+    密码：<input type="text" name="password">
+    <input type="submit" name="确认">
+</form>
+</body>
+</html>
